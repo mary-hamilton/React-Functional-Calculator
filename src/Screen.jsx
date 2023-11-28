@@ -5,7 +5,7 @@ const Screen = ({ symbol, input, result }) => {
     return (
         <>
             {symbol}
-            {result ? result : input}
+            {result !== undefined ? result : input}
         </>
     )
 }

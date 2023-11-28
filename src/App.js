@@ -2,32 +2,39 @@ import './App.css';
 import Calculator from "./Calculator";
 import {useState} from "react";
 import Screen from "./Screen";
-import {makeNumber} from "./functionalCalculator";
+import {calculate} from "./functionalCalculator";
 
 function App() {
 
     const [input, setInput] = useState([]);
     const [operator, setOperator] = useState(undefined);
-    const [result, setResult] = useState(undefined);
+    const [result, setResult] = useState(0);
     const [symbol, setSymbol] = useState(undefined);
 
-    console.log(input)
-    console.log(result)
-
-    const symbols = {
+    const operatorsAsSymbols = {
         plus: "+",
         minus: "-",
         times: "*",
         dividedBy: "/",
         equals: "="
     }
+
+    const numbersAsDigits = {
+        zero: 0,
+        one: 1,
+        two: 2,
+        three: 3,
+        four: 4,
+        five: 5,
+        six: 6,
+        seven: 7,
+        eight: 8,
+        nine: 9
+    }
+
     const currentInput = (+ input.join(""));
 
     const handleNumberClick = (numberFunction) => {
-
-        //TODO understand better why I needed callback functions here
-        //TODO implement "Clear' button (easy)
-        //TODO make something insane happen if you divide by 0
 
         if (!operator) {
             setSymbol(undefined);
@@ -37,6 +44,7 @@ function App() {
     }
 
     const handleOperatorClick = (operatorFunction) => {
+
         if(!operator) {
             setOperator(() => operatorFunction(currentInput));
             setInput(() => []);
@@ -44,10 +52,13 @@ function App() {
     }
 
     const handleEqualsClick = () => {
-        const finalOperand = makeNumber(currentInput);
-        setResult(() => finalOperand(operator));
-        setInput(() =>[]);
-        setOperator(() => undefined);
+        if(operator) {
+            setResult(() => calculate(currentInput)(operator));
+            setInput(() => []);
+            setOperator(() => undefined);
+        } else {
+            setResult(() => input)
+        }
     }
 
     const handleClearClick = () => {
@@ -64,12 +75,14 @@ function App() {
                 handleOperatorClick={handleOperatorClick}
                 handleEqualsClick={handleEqualsClick}
                 handleClearClick={handleClearClick}
+                numbersAsDigits={numbersAsDigits}
+                operatorsAsSymbols={operatorsAsSymbols}
                 setSymbol={setSymbol}
             />
             <Screen
                 input={input}
                 result={result}
-                symbol={symbols[symbol]}
+                symbol={symbol}
             />
         </>
     );

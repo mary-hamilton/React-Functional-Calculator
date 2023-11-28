@@ -1,31 +1,18 @@
-export const makeNumber = (value) => {
+export const calculate = (value) => {
     return (operatorFunc) => {
-        if (operatorFunc) {
             return operatorFunc(value);
-        }
-        return value;
     };
 }
+const returnNumber = (value) => {
+    return () => value;
+}
 
-const zero = makeNumber(0);
+const numNameArray = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
 
-const one = makeNumber(1);
-
-const two = makeNumber(2);
-
-const three = makeNumber(3);
-
-const four = makeNumber(4);
-
-const five = makeNumber(5);
-
-const six = makeNumber(6);
-
-const seven = makeNumber(7);
-
-const eight = makeNumber(8);
-
-const nine = makeNumber(9);
+export const functionalNumNames = {}
+numNameArray.forEach((numName, index) => {
+        functionalNumNames[numName] = returnNumber(index);
+})
 
 const plus = (number) => {
     return (otherNumber) => {
@@ -49,5 +36,4 @@ const dividedBy = (number) => {
         return number / otherNumber;
     }
 }
-export const numbers = {zero, one, two, three, four, five, six, seven, eight, nine};
 export const operators = {plus, minus, times, dividedBy};

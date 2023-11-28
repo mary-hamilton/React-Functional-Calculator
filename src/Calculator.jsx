@@ -1,36 +1,35 @@
-import {numbers, operators} from "./functionalCalculator";
+import {functionalNumNames, operators} from "./functionalCalculator";
 import CalculatorButton from "./CalculatorButton";
 
-const Calculator = ({ handleNumberClick, handleOperatorClick, handleEqualsClick, handleClearClick, setSymbol }) => {
+const Calculator = ({handleNumberClick, handleOperatorClick, handleEqualsClick, handleClearClick, setSymbol, numbersAsDigits, operatorsAsSymbols}) => {
 
-    //TODO make numbers digits
     //TODO add styling and differentiate between buttons
     //TODO grid it
 
     return (
         <>
-            {Object.keys(numbers).map((key) => (
+            {Object.keys(functionalNumNames).map((key) => (
                 <CalculatorButton
-                        key={key}
-                        buttonFunction={numbers[key]}
-                        name={key}
-                        handleButtonClick={handleNumberClick}
-                        number
+                    key={key}
+                    buttonFunction={functionalNumNames[key]}
+                    name={numbersAsDigits[key]}
+                    handleButtonClick={handleNumberClick}
+                    number
                 />
             ))}
             {Object.keys(operators).map((key) => (
                 <CalculatorButton
-                        key={key}
-                        buttonFunction={operators[key]}
-                        name={key}
-                        handleButtonClick={handleOperatorClick}
-                        setSymbol={setSymbol}
+                    key={key}
+                    buttonFunction={operators[key]}
+                    name={operatorsAsSymbols[key]}
+                    handleButtonClick={handleOperatorClick}
+                    setSymbol={setSymbol}
                 />
             ))}
             <CalculatorButton
-                        name="equals"
-                        handleButtonClick={handleEqualsClick}
-                        setSymbol={setSymbol}
+                name="="
+                handleButtonClick={handleEqualsClick}
+                setSymbol={setSymbol}
             />
             <CalculatorButton
                 name="clear"
