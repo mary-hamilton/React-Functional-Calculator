@@ -1,25 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
+import Calculator from "./Calculator";
+import {useState} from "react";
+import Result from "./Result";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [secondOperand, setSecondOperand] = useState();
+    const [operator, setOperator] = useState();
+    const [result, setResult] = useState(0);
+
+    const handleNumberClick = (numberFunction) => {
+
+        if (!secondOperand) {
+            setSecondOperand(() => numberFunction());
+            setResult(() => 0);
+        } else {
+            setResult(() => numberFunction(operator));
+            setSecondOperand(undefined);
+        }
+    }
+
+    const handleOperatorClick = (operatorFunction) => {
+        if(!secondOperand) {
+            return;
+        }
+        setOperator(() => operatorFunction(secondOperand));
+    }
+
+    return (
+        <>
+            <Calculator
+                handleNumberClick={handleNumberClick}
+                handleOperatorClick={handleOperatorClick}
+            />
+            <Result result={result}/>
+        </>
+    );
 }
 
 export default App;
