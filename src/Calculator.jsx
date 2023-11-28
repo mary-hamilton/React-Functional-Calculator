@@ -1,7 +1,7 @@
 import {numbers, operators} from "./functionalCalculator";
 import CalculatorButton from "./CalculatorButton";
 
-const Calculator = ({ handleNumberClick, handleOperatorClick, handleEqualsClick }) => {
+const Calculator = ({ handleNumberClick, handleOperatorClick, handleEqualsClick, setSymbol }) => {
 
     //TODO make numbers digits
     //TODO add styling and differentiate between buttons
@@ -14,7 +14,8 @@ const Calculator = ({ handleNumberClick, handleOperatorClick, handleEqualsClick 
                         key={key}
                         buttonFunction={numbers[key]}
                         name={key}
-                        handleClick={handleNumberClick}
+                        handleButtonClick={handleNumberClick}
+                        number
                 />
             ))}
             {Object.keys(operators).map((key) => (
@@ -22,12 +23,16 @@ const Calculator = ({ handleNumberClick, handleOperatorClick, handleEqualsClick 
                         key={key}
                         buttonFunction={operators[key]}
                         name={key}
-                        handleClick={handleOperatorClick}
+                        handleButtonClick={handleOperatorClick}
+                        setSymbol={setSymbol}
                 />
             ))}
             <CalculatorButton
-                        name="Equals"
-                        handleClick={handleEqualsClick}/>
+                        name="equals"
+                        handleButtonClick={handleEqualsClick}
+                        setSymbol={setSymbol}
+            />
+
         </>
     )
 }

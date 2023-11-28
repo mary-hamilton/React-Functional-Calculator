@@ -46,7 +46,7 @@ const times = (number) => {
 }
 const dividedBy = (number) => {
     return (otherNumber) => {
-        return Math.floor(number / otherNumber);
+        return number / otherNumber;
     }
 }
 export const numbers = {zero, one, two, three, four, five, six, seven, eight, nine};
