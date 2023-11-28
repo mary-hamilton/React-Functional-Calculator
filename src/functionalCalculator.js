@@ -1,4 +1,4 @@
-const number = (value) => {
+export const makeNumber = (value) => {
     return (operatorFunc) => {
         if (operatorFunc) {
             return operatorFunc(value);
@@ -7,48 +7,47 @@ const number = (value) => {
     };
 }
 
-const zero = number(0);
+const zero = makeNumber(0);
 
-const one = number(1);
+const one = makeNumber(1);
 
-const two = number(2);
+const two = makeNumber(2);
 
-const three = number(3);
+const three = makeNumber(3);
 
-const four = number(4);
+const four = makeNumber(4);
 
-const five = number(5);
+const five = makeNumber(5);
 
-const six = number(6);
+const six = makeNumber(6);
 
-const seven = number(7);
+const seven = makeNumber(7);
 
-const eight = number(8);
+const eight = makeNumber(8);
 
-const nine = number(9);
+const nine = makeNumber(9);
 
 const plus = (number) => {
     return (otherNumber) => {
-        return otherNumber + number;
+        return number + number;
     }
 }
 
 const minus = (number) => {
     return (otherNumber) => {
-        return otherNumber - number;
+        return number - otherNumber;
     }
 }
 
 const times = (number) => {
     return (otherNumber) => {
-        return otherNumber * number;
+        return number * otherNumber;
     }
 }
 const dividedBy = (number) => {
     return (otherNumber) => {
-        return Math.floor(otherNumber / number);
+        return Math.floor(number / otherNumber);
     }
 }
-
 export const numbers = {zero, one, two, three, four, five, six, seven, eight, nine};
 export const operators = {plus, minus, times, dividedBy};
