@@ -1,7 +1,7 @@
 import {numbers, operators} from "./functionalCalculator";
 import CalculatorButton from "./CalculatorButton";
 
-const Calculator = ({ handleNumberClick, handleOperatorClick, handleEqualsClick, setSymbol }) => {
+const Calculator = ({ handleNumberClick, handleOperatorClick, handleEqualsClick, handleClearClick, setSymbol }) => {
 
     //TODO make numbers digits
     //TODO add styling and differentiate between buttons
@@ -32,7 +32,11 @@ const Calculator = ({ handleNumberClick, handleOperatorClick, handleEqualsClick,
                         handleButtonClick={handleEqualsClick}
                         setSymbol={setSymbol}
             />
-
+            <CalculatorButton
+                name="clear"
+                handleButtonClick={handleClearClick}
+                clear
+            />
         </>
     )
 }

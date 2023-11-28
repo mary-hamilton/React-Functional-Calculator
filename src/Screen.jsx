@@ -1,5 +1,7 @@
 const Screen = ({ symbol, input, result }) => {
-    console.log(result)
+
+
+
     return (
         <>
             {symbol}

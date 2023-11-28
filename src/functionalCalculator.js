@@ -29,7 +29,7 @@ const nine = makeNumber(9);
 
 const plus = (number) => {
     return (otherNumber) => {
-        return number + number;
+        return number + otherNumber;
     }
 }
 

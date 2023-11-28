@@ -1,9 +1,9 @@
 import Button from '@mui/material/Button';
 
-const CalculatorButton = ({ buttonFunction, name, handleButtonClick, setSymbol, number }) => {
+const CalculatorButton = ({ buttonFunction, name, handleButtonClick, setSymbol, number, clear }) => {
 
     const handleClick = () => {
-        if (!number) {
+        if (!number && !clear) {
             setSymbol(name)
         }
         handleButtonClick(buttonFunction);

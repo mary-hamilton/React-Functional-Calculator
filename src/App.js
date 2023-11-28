@@ -8,8 +8,11 @@ function App() {
 
     const [input, setInput] = useState([]);
     const [operator, setOperator] = useState(undefined);
-    const [result, setResult] = useState(0);
+    const [result, setResult] = useState(undefined);
     const [symbol, setSymbol] = useState(undefined);
+
+    console.log(input)
+    console.log(result)
 
     const symbols = {
         plus: "+",
@@ -24,8 +27,8 @@ function App() {
 
         //TODO understand better why I needed callback functions here
         //TODO implement "Clear' button (easy)
-        //TODO make it so you see the number you are typing in and the operand
         //TODO make something insane happen if you divide by 0
+
         if (!operator) {
             setSymbol(undefined);
         }
@@ -43,8 +46,15 @@ function App() {
     const handleEqualsClick = () => {
         const finalOperand = makeNumber(currentInput);
         setResult(() => finalOperand(operator));
+        setInput(() =>[]);
+        setOperator(() => undefined);
+    }
+
+    const handleClearClick = () => {
         setInput([]);
+        setResult(0);
         setOperator(undefined);
+        setSymbol(undefined);
     }
 
     return (
@@ -53,6 +63,7 @@ function App() {
                 handleNumberClick={handleNumberClick}
                 handleOperatorClick={handleOperatorClick}
                 handleEqualsClick={handleEqualsClick}
+                handleClearClick={handleClearClick}
                 setSymbol={setSymbol}
             />
             <Screen
